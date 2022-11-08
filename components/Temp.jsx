@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 
-const Temp = ({data}) => {
+const Temp = ({data, converter, cap}) => {
   const {coord, weather, base, main, wind, clouds, sys} = data;
 
   const renderItem = ({item}) => <Item title={item.title} />;
@@ -12,11 +12,13 @@ const Temp = ({data}) => {
           marginBottom: 500,
           borderColor: 'white',
           borderWidth: 5,
+          borderRadius: 10,
           backgroundColor: '#DFF1F8',
         }}>
         <View style={{alignItems: 'center'}}>
-          <Text style={{fontWeight: 'bold'}}>{weather[0].description}</Text>
-          <Text style={{fontSize: 30}}>{main.temp}</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 22}}>Newark</Text>
+          <Text style={{fontSize: 34}}>{converter(main.temp)} F</Text>
+          <Text>{cap(weather[0].description)}</Text>
         </View>
 
         <View
@@ -25,13 +27,15 @@ const Temp = ({data}) => {
             justifyContent: 'space-between',
             padding: 10,
           }}>
-          <Text style={{paddingRight: 10}}>High: {main.temp_max}</Text>
-          <Text>Low: {main.temp_min}</Text>
+          <Text style={{paddingRight: 10}}>
+            High: {converter(main.temp_max)}
+          </Text>
+          <Text>Low: {converter(main.temp_min)}</Text>
         </View>
 
         {/* <View>
           <FlatList
-            horizontal={true}
+            horizontal
             data={data}
             renderItem={renderItem}
             keyExtractor={item => item.id}

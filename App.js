@@ -13,9 +13,16 @@ const URL =
 const App = () => {
   const [APIData, setAPIData] = useState(null);
 
-  // function getF({main.temp}) => {
-  //     return
-  // }
+  function getF(kelvinTemp) {
+    return Math.round(1.8 * (kelvinTemp - 273.15) + 32);
+  }
+  function capitilize(str) {
+    const arr = str.split(' ');
+    const result = arr.map(word => {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    });
+    return result.join(' ');
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -29,7 +36,7 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       {APIData !== null ? (
-        <Temp data={APIData} />
+        <Temp converter={getF} data={APIData} cap={capitilize} />
       ) : (
         <ActivityIndicator size="large" />
       )}
