@@ -55,7 +55,11 @@ const App = () => {
           )}
         </View>
         <View>
-          <Daily />
+          {APIData !== null ? (
+            <Daily converter={getF} data={APIData} />
+          ) : (
+            <ActivityIndicator size="large" />
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
