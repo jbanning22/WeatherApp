@@ -37,11 +37,13 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {APIData !== null ? (
-        <Temp converter={getF} data={APIData} cap={capitilize} />
-      ) : (
-        <ActivityIndicator size="large" />
-      )}
+      <View>
+        {APIData !== null ? (
+          <Temp converter={getF} data={APIData} cap={capitilize} />
+        ) : (
+          <ActivityIndicator size="large" />
+        )}
+      </View>
       <View>
         <Hourly />
       </View>
@@ -54,7 +56,7 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'skyblue',
   },

@@ -25,9 +25,19 @@ const Hourly = () => {
   const renderItem = ({item}) => <Item title={item.title} />;
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View
+      style={{
+        width: 300,
+        height: 150,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'white',
+        backgroundColor: 'red',
+      }}>
       <FlatList
         data={DATA}
+        horizontal
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
