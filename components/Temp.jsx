@@ -9,29 +9,31 @@ const Temp = ({data, converter, cap}) => {
       style={{
         marginTop: 40,
         marginBottom: 40,
-        borderColor: 'white',
-        borderWidth: 5,
-        borderRadius: 10,
-        backgroundColor: '#DFF1F8',
+        // borderColor: 'white',
+        // borderWidth: 5,
+        // borderRadius: 10,
+        // backgroundColor: '#DFF1F8',
       }}>
       <View style={{alignItems: 'center'}}>
-        <Text style={{fontWeight: 'bold', fontSize: 22}}>Newark</Text>
-        <Text style={{fontSize: 68, fontWeight: '200'}}>
+        <Text style={{fontWeight: '500', fontSize: 22, color: 'white'}}>
+          Newark
+        </Text>
+        <Text style={{fontSize: 68, fontWeight: '200', color: 'white'}}>
           {converter(main.temp)}&deg;
         </Text>
-        <Text>{cap(weather[0].description)}</Text>
+        <Text style={{color: 'white'}}>{cap(weather[0].description)} </Text>
       </View>
 
       <View
         style={{
           flexDirection: 'row',
-          justifyContent: 'space-between',
-          padding: 10,
+          justifyContent: 'center',
+          //   padding: 10,
         }}>
-        <Text style={{paddingRight: 10}}>
-          High: {converter(main.temp_max)}&deg;
+        <Text style={{paddingRight: 10, color: 'white'}}>
+          H: {converter(main.temp_max)}&deg;
         </Text>
-        <Text>Low: {converter(main.temp_min)}&deg;</Text>
+        <Text style={{color: 'white'}}>L: {converter(main.temp_min)}&deg;</Text>
       </View>
     </View>
   );
