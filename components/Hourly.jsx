@@ -3,14 +3,28 @@ import React from 'react';
 
 const Hourly = ({data, converter}) => {
   const {current, minutely, hourly, daily} = data;
+
+  function ESTime(unixTime) {
+    var date = new Date(unixTime * 1000);
+    return date.toLocaleTimeString([], {hour: '2-digit'});
+  }
+
   const renderItem = ({item}) => <Item data={item} />;
 
   const Item = ({data}) => {
     const {dt, temp, weather} = data;
     return (
-      <View>
-        <Text> {dt} </Text>
-        <Text> {converter(temp)} </Text>
+      <View
+        style={{justifyContent: 'center', alignItems: 'center', padding: 5}}>
+        <View>
+          <Text style={{color: 'white'}}> {ESTime(dt)} </Text>
+        </View>
+
+        <View>
+          <Text style={{color: 'yellow'}}>Icon here </Text>
+        </View>
+
+        <Text style={{color: 'white'}}> {converter(temp)} &deg;</Text>
       </View>
     );
   };
@@ -30,18 +44,9 @@ const Hourly = ({data, converter}) => {
 export default Hourly;
 
 const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
   HFL: {
     width: 350,
-    height: 150,
+    height: 80,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
