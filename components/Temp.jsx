@@ -17,7 +17,7 @@ const Temp = ({data, converter, cap}) => {
         }}>
         <View style={{alignItems: 'center'}}>
           <Text style={{fontWeight: 'bold', fontSize: 22}}>Newark</Text>
-          <Text style={{fontSize: 34}}>{converter(main.temp)} F</Text>
+          <Text style={{fontSize: 34}}>{converter(main.temp)}&deg;</Text>
           <Text>{cap(weather[0].description)}</Text>
         </View>
 
