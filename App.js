@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Temp from './components/Temp';
+import Hourly from './components/Hourly';
+
 const URL =
   'https://api.openweathermap.org/data/2.5/weather?lat=39.683723&lon=-75.749657&appid=a18dcffbfd962f8662fbf97f8a228b5c';
 
@@ -40,6 +42,9 @@ const App = () => {
       ) : (
         <ActivityIndicator size="large" />
       )}
+      <View>
+        <Hourly />
+      </View>
     </SafeAreaView>
   );
 };
