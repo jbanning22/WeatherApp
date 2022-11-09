@@ -14,30 +14,30 @@ const DATA = [
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
     title: 'Third Item',
   },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
 ];
-
 const Item = ({title}) => (
   <View style={styles.item}>
     <Text style={styles.title}>{title}</Text>
   </View>
 );
 
-const Hourly = ({title}) => {
+const Daily = () => {
   const renderItem = ({item}) => <Item title={item.title} />;
 
   return (
-    <View style={styles.HFL}>
+    <View
+      style={{
+        width: 350,
+        height: 500,
+        backgroundColor: 'skyblue',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'white',
+        marginTop: 20,
+      }}>
       <FlatList
         data={DATA}
-        horizontal
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
@@ -45,7 +45,7 @@ const Hourly = ({title}) => {
   );
 };
 
-export default Hourly;
+export default Daily;
 
 const styles = StyleSheet.create({
   item: {
@@ -56,14 +56,5 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-  },
-  HFL: {
-    width: 350,
-    height: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'white',
-    backgroundColor: 'skyblue',
   },
 });

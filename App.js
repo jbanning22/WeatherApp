@@ -4,13 +4,15 @@ import {
   View,
   StyleSheet,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Temp from './components/Temp';
 import Hourly from './components/Hourly';
+import Daily from './components/Daily';
 
 const URL =
-  'https://api.openweathermap.org/data/2.5/weather?lat=39.683723&lon=-75.749657&appid=a18dcffbfd962f8662fbf97f8a228b5c';
+  'https://api.openweathermap.org/data/3.0/onecall?lat=39.684&lon=-75.749657&appid=fe00c682c3e53ad073fa636d3b457d9a';
 
 const App = () => {
   const [APIData, setAPIData] = useState(null);
@@ -37,16 +39,21 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        {APIData !== null ? (
-          <Temp converter={getF} data={APIData} cap={capitilize} />
-        ) : (
-          <ActivityIndicator size="large" />
-        )}
-      </View>
-      <View>
-        <Hourly />
-      </View>
+      <ScrollView>
+        <View>
+          {APIData !== null ? (
+            <Temp converter={getF} data={APIData} cap={capitilize} />
+          ) : (
+            <ActivityIndicator size="large" />
+          )}
+        </View>
+        <View>
+          <Hourly />
+        </View>
+        <View>
+          <Daily />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

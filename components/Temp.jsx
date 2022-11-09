@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 
 const Temp = ({data, converter, cap}) => {
-  const {coord, weather, base, main, wind, clouds, sys} = data;
+  const {current, minutely, hourly, daily} = data;
 
   return (
     <View
@@ -19,9 +19,11 @@ const Temp = ({data, converter, cap}) => {
           Newark
         </Text>
         <Text style={{fontSize: 68, fontWeight: '200', color: 'white'}}>
-          {converter(main.temp)}&deg;
+          {converter(current.temp)}&deg;
         </Text>
-        <Text style={{color: 'white'}}>{cap(weather[0].description)} </Text>
+        <Text style={{color: 'white'}}>
+          {cap(current.weather[0].description)}{' '}
+        </Text>
       </View>
 
       <View
@@ -31,9 +33,11 @@ const Temp = ({data, converter, cap}) => {
           //   padding: 10,
         }}>
         <Text style={{paddingRight: 10, color: 'white'}}>
-          H: {converter(main.temp_max)}&deg;
+          H: {converter(daily[0].temp.max)}&deg;
         </Text>
-        <Text style={{color: 'white'}}>L: {converter(main.temp_min)}&deg;</Text>
+        <Text style={{color: 'white'}}>
+          L: {converter(daily[0].temp.min)}&deg;
+        </Text>
       </View>
     </View>
   );
