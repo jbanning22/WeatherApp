@@ -12,7 +12,7 @@ import Hourly from './components/Hourly';
 import Daily from './components/Daily';
 
 const URL =
-  'https://api.openweathermap.org/data/3.0/onecall?lat=39.684&lon=-75.749657&appid=fe00c682c3e53ad073fa636d3b457d9a';
+  'https://api.openweathermap.org/data/3.0/onecall?lat=39.6837&lon=-75.7497&appid=fe00c682c3e53ad073fa636d3b457d9a';
 
 const App = () => {
   const [APIData, setAPIData] = useState(null);
@@ -48,7 +48,11 @@ const App = () => {
           )}
         </View>
         <View>
-          <Hourly />
+          {APIData !== null ? (
+            <Hourly converter={getF} data={APIData} />
+          ) : (
+            <ActivityIndicator size="large" />
+          )}
         </View>
         <View>
           <Daily />

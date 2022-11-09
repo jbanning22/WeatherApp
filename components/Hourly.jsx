@@ -1,42 +1,24 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
+const Hourly = ({data, converter}) => {
+  const {current, minutely, hourly, daily} = data;
+  const renderItem = ({item}) => <Item data={item} />;
 
-const Item = ({title}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
-
-const Hourly = ({title}) => {
-  const renderItem = ({item}) => <Item title={item.title} />;
+  const Item = ({data}) => {
+    const {dt, temp, weather} = data;
+    return (
+      <View>
+        <Text> {dt} </Text>
+        <Text> {converter(temp)} </Text>
+      </View>
+    );
+  };
 
   return (
     <View style={styles.HFL}>
       <FlatList
-        data={DATA}
+        data={hourly}
         horizontal
         renderItem={renderItem}
         keyExtractor={item => item.id}
