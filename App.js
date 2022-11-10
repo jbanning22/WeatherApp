@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   ScrollView,
+  StatusBar,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Temp from './components/Temp';
@@ -39,6 +40,7 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle={'light-content'} />
       <ScrollView>
         <View>
           {APIData !== null ? (

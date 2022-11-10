@@ -27,6 +27,38 @@ const Daily = ({data, converter}) => {
     }
   }
 
+  const renderIcon = descr => {
+    switch (descr) {
+      case '01d':
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faSun}
+            color={'yellow'}
+          />
+        );
+      case '10d':
+      case '09d':
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faCloudRain}
+            color={'white'}
+          />
+        );
+      case '03d':
+      case '02d':
+      case '04d':
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faCloud}
+            color={'white'}
+          />
+        );
+    }
+  };
+
   const renderItem = ({item}) => <Item data={item} />;
 
   const Item = ({data}) => {
@@ -42,13 +74,7 @@ const Daily = ({data, converter}) => {
         <View style={styles.box}>
           <Text style={styles.textStyle}>{ESTime(dt)} </Text>
         </View>
-        <View style={styles.box}>
-          <FontAwesomeIcon
-            style={{marginTop: 5}}
-            icon={getIcon(weather[0].icon)}
-            color={'white'}
-          />
-        </View>
+        <View style={styles.box}>{renderIcon(weather[0].icon)}</View>
         <View style={styles.box}>
           <Text style={styles.textStyle}>L: {converter(temp.min)}&deg;</Text>
         </View>
@@ -68,7 +94,7 @@ const Daily = ({data, converter}) => {
             marginTop: 25,
             fontSize: 18,
           }}>
-          Hourly Forecast
+          Daily Forecast
         </Text>
       </View>
       <View style={styles.VFL}>

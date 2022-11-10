@@ -52,7 +52,7 @@ const Hourly = ({data, converter}) => {
       <View
         style={{justifyContent: 'center', alignItems: 'center', padding: 5}}>
         <View>
-          <Text style={{color: 'white'}}> {ESTime(dt)} </Text>
+          <Text style={{color: 'white', fontSize: 12}}> {ESTime(dt)} </Text>
         </View>
 
         <View
