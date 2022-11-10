@@ -20,7 +20,9 @@ const Daily = ({data, converter}) => {
         return faSun;
       case '10d':
         return faCloudRain;
-      case ('03d', '02d', '04d'):
+      case '03d':
+      case '02d':
+      case '04d':
         return faCloud;
     }
   }
@@ -37,21 +39,45 @@ const Daily = ({data, converter}) => {
           flexDirection: 'row',
           marginBottom: 20,
         }}>
-        <Text style={styles.textStyle}>{ESTime(dt)} </Text>
-        {/* <FontAwesomeIcon icon={getIcon(weather[0].main)} color={'white'} /> */}
-        <FontAwesomeIcon icon={getIcon(weather[0].icon)} color={'white'} />
-        <Text style={styles.textStyle}>{converter(temp.max)}&deg; </Text>
-        <Text style={styles.textStyle}>{converter(temp.min)}&deg;</Text>
+        <View style={styles.box}>
+          <Text style={styles.textStyle}>{ESTime(dt)} </Text>
+        </View>
+        <View style={styles.box}>
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={getIcon(weather[0].icon)}
+            color={'white'}
+          />
+        </View>
+        <View style={styles.box}>
+          <Text style={styles.textStyle}>L: {converter(temp.min)}&deg;</Text>
+        </View>
+        <View style={styles.box}>
+          <Text style={styles.textStyle}>H: {converter(temp.max)}&deg; </Text>
+        </View>
       </View>
     );
   };
   return (
-    <View style={styles.VFL}>
-      <FlatList
-        data={daily}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+    <View>
+      <View>
+        <Text
+          style={{
+            alignSelf: 'center',
+            color: 'white',
+            marginTop: 25,
+            fontSize: 18,
+          }}>
+          Hourly Forecast
+        </Text>
+      </View>
+      <View style={styles.VFL}>
+        <FlatList
+          data={daily}
+          renderItem={renderItem}
+          keyExtractor={item => item.dt}
+        />
+      </View>
     </View>
   );
 };
@@ -63,20 +89,18 @@ const styles = StyleSheet.create({
     width: 350,
     height: 500,
     backgroundColor: 'skyblue',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    borderWidth: 1,
+    paddingTop: 24,
+    borderWidth: 0.25,
     borderColor: 'white',
-    marginTop: 20,
+    // marginTop: 20,
     borderRadius: 10,
   },
   textStyle: {
     fontSize: 20,
-    // justifyContent: 'space-between',
-    alignSelf: 'flex-start',
     color: 'white',
-    padding: 10,
-    paddingRight: 10,
-    paddingRight: 10,
+  },
+  box: {
+    height: 40,
+    width: 60,
   },
 });

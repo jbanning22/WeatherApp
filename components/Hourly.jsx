@@ -19,13 +19,23 @@ const Hourly = ({data, converter}) => {
     switch (descr) {
       case '01d':
         return faSun;
-      case ('10d', '13d', '09d'):
+      case '10d':
+      case '10n':
+      case '09n':
+      case '09d':
         return faCloudRain;
-      case ('03d', '02d', '04d'):
+      case '03d':
+      case '03n':
+      case '02n':
+      case '04n':
+      case '02d':
+      case '04d':
         return faCloud;
       case '01n':
         return faMoon;
-      case ('02n', '03n', '04n'):
+      case '02n':
+      case '03n':
+      case '04n':
         return faCloudMoon;
     }
   }
@@ -34,14 +44,24 @@ const Hourly = ({data, converter}) => {
 
   const Item = ({data}) => {
     const {dt, temp, weather} = data;
+    console.log('icon: ', weather[0].icon);
     return (
+      // <View>
+      // <Text>Hourly Forecast</Text>
+      // </View>
       <View
         style={{justifyContent: 'center', alignItems: 'center', padding: 5}}>
         <View>
           <Text style={{color: 'white'}}> {ESTime(dt)} </Text>
         </View>
 
-        <View style={{paddingTop: 8, paddingBottom: 8}}>
+        <View
+          style={{
+            // paddingTop: 8,
+            // paddingBottom: 8,
+            marginTop: 10,
+            marginBottom: 10,
+          }}>
           <FontAwesomeIcon icon={getIcon(weather[0].icon)} color={'white'} />
         </View>
 
@@ -51,13 +71,20 @@ const Hourly = ({data, converter}) => {
   };
 
   return (
-    <View style={styles.HFL}>
-      <FlatList
-        data={hourly}
-        horizontal
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+    <View>
+      <View>
+        <Text style={{alignSelf: 'center', color: 'white', fontSize: 18}}>
+          Hourly Forecast
+        </Text>
+      </View>
+      <View style={styles.HFL}>
+        <FlatList
+          data={hourly}
+          horizontal
+          renderItem={renderItem}
+          keyExtractor={item => item.dt}
+        />
+      </View>
     </View>
   );
 };
@@ -70,7 +97,7 @@ const styles = StyleSheet.create({
     height: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: 0.25,
     borderColor: 'white',
     backgroundColor: 'skyblue',
     borderRadius: 10,
