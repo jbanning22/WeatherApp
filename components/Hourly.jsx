@@ -1,5 +1,11 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faCloud} from '@fortawesome/free-solid-svg-icons/faCloud';
+import {faSun} from '@fortawesome/free-solid-svg-icons/faSun';
+import {faCloudRain} from '@fortawesome/free-solid-svg-icons/faCloudRain';
+import {faCloudMoon} from '@fortawesome/free-solid-svg-icons/faCloudMoon';
+import {faMoon} from '@fortawesome/free-solid-svg-icons/faMoon';
 
 const Hourly = ({data, converter}) => {
   const {current, minutely, hourly, daily} = data;
@@ -7,6 +13,21 @@ const Hourly = ({data, converter}) => {
   function ESTime(unixTime) {
     var date = new Date(unixTime * 1000);
     return date.toLocaleTimeString([], {hour: '2-digit'});
+  }
+
+  function getIcon(descr) {
+    switch (descr) {
+      case '01d':
+        return faSun;
+      case ('10d', '13d', '09d'):
+        return faCloudRain;
+      case ('03d', '02d', '04d'):
+        return faCloud;
+      case '01n':
+        return faMoon;
+      case ('02n', '03n', '04n'):
+        return faCloudMoon;
+    }
   }
 
   const renderItem = ({item}) => <Item data={item} />;
@@ -20,8 +41,8 @@ const Hourly = ({data, converter}) => {
           <Text style={{color: 'white'}}> {ESTime(dt)} </Text>
         </View>
 
-        <View>
-          <Text style={{color: 'yellow'}}>Icon here </Text>
+        <View style={{paddingTop: 8, paddingBottom: 8}}>
+          <FontAwesomeIcon icon={getIcon(weather[0].icon)} color={'white'} />
         </View>
 
         <Text style={{color: 'white'}}> {converter(temp)} &deg;</Text>

@@ -1,9 +1,8 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faSolid} from '@fortawesome/free-solid-svg-icons/faSolid';
-import {faSharp} from '@fortawesome/free-solid-svg-icons/faSharp';
-
+import {faCloud} from '@fortawesome/free-solid-svg-icons/faCloud';
+import {faSun} from '@fortawesome/free-solid-svg-icons/faSun';
 import {faCloudRain} from '@fortawesome/free-solid-svg-icons/faCloudRain';
 
 const Daily = ({data, converter}) => {
@@ -13,6 +12,17 @@ const Daily = ({data, converter}) => {
     return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][
       new Date(unixTime * 1000).getDay()
     ];
+  }
+
+  function getIcon(descr) {
+    switch (descr) {
+      case '01d':
+        return faSun;
+      case '10d':
+        return faCloudRain;
+      case ('03d', '02d', '04d'):
+        return faCloud;
+    }
   }
 
   const renderItem = ({item}) => <Item data={item} />;
@@ -28,7 +38,8 @@ const Daily = ({data, converter}) => {
           marginBottom: 20,
         }}>
         <Text style={styles.textStyle}>{ESTime(dt)} </Text>
-        <FontAwesomeIcon icon=" fa-Solid faCloudRain" />
+        {/* <FontAwesomeIcon icon={getIcon(weather[0].main)} color={'white'} /> */}
+        <FontAwesomeIcon icon={getIcon(weather[0].icon)} color={'white'} />
         <Text style={styles.textStyle}>{converter(temp.max)}&deg; </Text>
         <Text style={styles.textStyle}>{converter(temp.min)}&deg;</Text>
       </View>
@@ -50,7 +61,7 @@ export default Daily;
 const styles = StyleSheet.create({
   VFL: {
     width: 350,
-    height: 1000,
+    height: 500,
     backgroundColor: 'skyblue',
     // justifyContent: 'center',
     // alignItems: 'center',
