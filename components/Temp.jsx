@@ -15,14 +15,14 @@ const Temp = ({data, converter, cap}) => {
         // backgroundColor: '#DFF1F8',
       }}>
       <View style={{alignItems: 'center'}}>
-        <Text style={{fontWeight: '500', fontSize: 22, color: 'white'}}>
+        <Text style={{fontWeight: '500', fontSize: 30, color: 'white'}}>
           Newark
         </Text>
-        <Text style={{fontSize: 68, fontWeight: '200', color: 'white'}}>
+        <Text style={{fontSize: 80, fontWeight: '200', color: 'white'}}>
           {converter(current.temp)}&deg;
         </Text>
-        <Text style={{color: 'white'}}>
-          {cap(current.weather[0].description)}{' '}
+        <Text style={{fontSize: 16, color: 'white'}}>
+          {cap(current.weather[0].main)}{' '}
         </Text>
       </View>
 
@@ -32,10 +32,10 @@ const Temp = ({data, converter, cap}) => {
           justifyContent: 'center',
           //   padding: 10,
         }}>
-        <Text style={{paddingRight: 10, color: 'white'}}>
+        <Text style={{paddingRight: 10, color: 'white', fontSize: 16}}>
           H: {converter(daily[0].temp.max)}&deg;
         </Text>
-        <Text style={{color: 'white'}}>
+        <Text style={{color: 'white', fontSize: 16}}>
           L: {converter(daily[0].temp.min)}&deg;
         </Text>
       </View>

@@ -15,40 +15,66 @@ const Hourly = ({data, converter}) => {
     return date.toLocaleTimeString([], {hour: '2-digit'});
   }
 
-  function getIcon(descr) {
+  const renderIcon = descr => {
     switch (descr) {
       case '01d':
-        return faSun;
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faSun}
+            color={'yellow'}
+          />
+        );
       case '10d':
       case '10n':
       case '09n':
       case '09d':
-        return faCloudRain;
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faCloudRain}
+            color={'white'}
+          />
+        );
       case '03d':
       case '03n':
       case '02n':
       case '04n':
       case '02d':
       case '04d':
-        return faCloud;
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faCloud}
+            color={'white'}
+          />
+        );
       case '01n':
-        return faMoon;
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faMoon}
+            color={'white'}
+          />
+        );
       case '02n':
       case '03n':
       case '04n':
-        return faCloudMoon;
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faCloudMoon}
+            color={'white'}
+          />
+        );
     }
-  }
+  };
 
   const renderItem = ({item}) => <Item data={item} />;
 
   const Item = ({data}) => {
     const {dt, temp, weather} = data;
-    console.log('icon: ', weather[0].icon);
     return (
-      // <View>
-      // <Text>Hourly Forecast</Text>
-      // </View>
       <View
         style={{justifyContent: 'center', alignItems: 'center', padding: 5}}>
         <View>
@@ -62,7 +88,7 @@ const Hourly = ({data, converter}) => {
             marginTop: 10,
             marginBottom: 10,
           }}>
-          <FontAwesomeIcon icon={getIcon(weather[0].icon)} color={'white'} />
+          <View>{renderIcon(weather[0].icon)}</View>
         </View>
 
         <Text style={{color: 'white'}}> {converter(temp)} &deg;</Text>
@@ -73,7 +99,13 @@ const Hourly = ({data, converter}) => {
   return (
     <View>
       <View>
-        <Text style={{alignSelf: 'center', color: 'white', fontSize: 18}}>
+        <Text
+          style={{
+            alignSelf: 'center',
+            color: 'white',
+            fontSize: 16,
+            marginBottom: 5,
+          }}>
           Hourly Forecast
         </Text>
       </View>
@@ -99,7 +131,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 0.25,
     borderColor: 'white',
-    backgroundColor: 'skyblue',
+    backgroundColor: '#156598',
     borderRadius: 10,
   },
 });

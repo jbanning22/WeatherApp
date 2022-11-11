@@ -14,18 +14,18 @@ const Daily = ({data, converter}) => {
     ];
   }
 
-  function getIcon(descr) {
-    switch (descr) {
-      case '01d':
-        return faSun;
-      case '10d':
-        return faCloudRain;
-      case '03d':
-      case '02d':
-      case '04d':
-        return faCloud;
-    }
-  }
+  //   function getIcon(descr) {
+  //     switch (descr) {
+  //       case '01d':
+  //         return faSun;
+  //       case '10d':
+  //         return faCloudRain;
+  //       case '03d':
+  //       case '02d':
+  //       case '04d':
+  //         return faCloud;
+  //     }
+  //   }
 
   const renderIcon = descr => {
     switch (descr) {
@@ -92,7 +92,8 @@ const Daily = ({data, converter}) => {
             alignSelf: 'center',
             color: 'white',
             marginTop: 25,
-            fontSize: 18,
+            fontSize: 16,
+            marginBottom: 5,
           }}>
           Daily Forecast
         </Text>
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
   VFL: {
     width: 350,
     height: 500,
-    backgroundColor: 'skyblue',
+    backgroundColor: '#156598',
     paddingTop: 24,
     borderWidth: 0.25,
     borderColor: 'white',
