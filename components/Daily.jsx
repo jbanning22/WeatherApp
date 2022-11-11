@@ -13,20 +13,6 @@ const Daily = ({data, converter}) => {
       new Date(unixTime * 1000).getDay()
     ];
   }
-
-  //   function getIcon(descr) {
-  //     switch (descr) {
-  //       case '01d':
-  //         return faSun;
-  //       case '10d':
-  //         return faCloudRain;
-  //       case '03d':
-  //       case '02d':
-  //       case '04d':
-  //         return faCloud;
-  //     }
-  //   }
-
   const renderIcon = descr => {
     switch (descr) {
       case '01d':
@@ -119,7 +105,6 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     borderWidth: 0.25,
     borderColor: 'white',
-    // marginTop: 20,
     borderRadius: 10,
   },
   textStyle: {
