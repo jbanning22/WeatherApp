@@ -1,8 +1,26 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 const Temp = ({data, location, converter, cap}) => {
+  const [city, setCity] = useState('');
   const {current, minutely, hourly, daily} = data;
+
+  useEffect(() => {
+    const URL = `https://api.tomtom.com/search/2/reverseGeocode/${location.latitude},${location.longitude}.json?key=z3JIhQDKHGEG92E3Jw5PJT8kmDLfmu0M&radius=100`;
+
+    const getData = async url => {
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        setCity(data.addresses[0].address.localName);
+      } catch (err) {
+        console.log('error ', err);
+      }
+    };
+
+    getData(URL);
+  }, []);
 
   return (
     <View
@@ -14,10 +32,8 @@ const Temp = ({data, location, converter, cap}) => {
       }}>
       <View style={{alignItems: 'center'}}>
         <Text style={{fontWeight: '500', fontSize: 30, color: 'white'}}>
-          Newark
+          {city}
         </Text>
-        {/* <Text>{location.latitude}</Text>
-        <Text>{location.longitude}</Text> */}
         <Text
           style={{
             fontSize: 80,
