@@ -4,6 +4,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCloud} from '@fortawesome/free-solid-svg-icons/faCloud';
 import {faSun} from '@fortawesome/free-solid-svg-icons/faSun';
 import {faCloudRain} from '@fortawesome/free-solid-svg-icons/faCloudRain';
+import {faSnowflake} from '@fortawesome/free-solid-svg-icons/faSnowflake';
+import {faThunderstorm} from '@fortawesome/free-solid-svg-icons/faThunderstorm';
 
 const Daily = ({data, converter}) => {
   const {current, minutely, hourly, daily} = data;
@@ -43,6 +45,23 @@ const Daily = ({data, converter}) => {
             color={'white'}
           />
         );
+      case '11d':
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faThunderstorm}
+            color={'white'}
+          />
+        );
+      case '13d':
+      case '13n':
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faSnowflake}
+            color={'white'}
+          />
+        );
     }
   };
 
@@ -56,7 +75,7 @@ const Daily = ({data, converter}) => {
           alignItems: 'center',
           justifyContent: 'space-evenly',
           flexDirection: 'row',
-          marginBottom: 20,
+          marginBottom: 10,
         }}>
         <View style={styles.box}>
           <Text style={styles.textStyle}>{ESTime(dt)} </Text>
@@ -104,7 +123,7 @@ const styles = StyleSheet.create({
     height: 360,
     backgroundColor: '#156598',
     paddingTop: 24,
-    borderWidth: 0.25,
+    borderWidth: 0.5,
     borderColor: 'white',
     borderRadius: 10,
   },

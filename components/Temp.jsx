@@ -12,7 +12,6 @@ const Temp = ({data, location, converter, cap}) => {
       try {
         const res = await fetch(url);
         const data = await res.json();
-
         setCity(data.addresses[0].address.localName);
       } catch (err) {
         console.log('error ', err);
@@ -27,11 +26,15 @@ const Temp = ({data, location, converter, cap}) => {
       style={{
         marginTop: 40,
         marginBottom: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
       }}>
-      <View style={{alignItems: 'center'}}>
-        <Text style={{fontWeight: '500', fontSize: 30, color: 'white'}}>
+      <View>
+        <Text
+          style={{
+            fontWeight: '500',
+            fontSize: 30,
+            color: 'white',
+            alignSelf: 'center',
+          }}>
           {city}
         </Text>
         <Text
@@ -39,24 +42,38 @@ const Temp = ({data, location, converter, cap}) => {
             fontSize: 80,
             fontWeight: '200',
             color: 'white',
-            alignSelf: 'center',
+            paddingLeft: 18,
           }}>
           {converter(current.temp)}&deg;
         </Text>
-        <Text style={{fontSize: 16, color: 'white'}}>
+        <Text
+          style={{
+            fontSize: 16,
+            color: 'white',
+
+            alignSelf: 'center',
+          }}>
           {cap(current.weather[0].main)}{' '}
         </Text>
       </View>
-
       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'center',
         }}>
-        <Text style={{paddingRight: 10, color: 'white', fontSize: 16}}>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 16,
+            marginRight: 10,
+          }}>
           H: {converter(daily[0].temp.max)}&deg;
         </Text>
-        <Text style={{color: 'white', fontSize: 16}}>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 16,
+          }}>
           L: {converter(daily[0].temp.min)}&deg;
         </Text>
       </View>

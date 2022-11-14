@@ -6,6 +6,9 @@ import {faSun} from '@fortawesome/free-solid-svg-icons/faSun';
 import {faCloudRain} from '@fortawesome/free-solid-svg-icons/faCloudRain';
 import {faCloudMoon} from '@fortawesome/free-solid-svg-icons/faCloudMoon';
 import {faMoon} from '@fortawesome/free-solid-svg-icons/faMoon';
+import {faSnowflake} from '@fortawesome/free-solid-svg-icons/faSnowflake';
+import {faThunderstorm} from '@fortawesome/free-solid-svg-icons/faThunderstorm';
+import {faTornado} from '@fortawesome/free-solid-svg-icons/faTornado';
 
 const Hourly = ({data, converter}) => {
   const {current, minutely, hourly, daily} = data;
@@ -37,9 +40,6 @@ const Hourly = ({data, converter}) => {
           />
         );
       case '03d':
-      case '03n':
-      case '02n':
-      case '04n':
       case '02d':
       case '04d':
         return (
@@ -67,6 +67,31 @@ const Hourly = ({data, converter}) => {
             color={'white'}
           />
         );
+      case '11d':
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faThunderstorm}
+            color={'white'}
+          />
+        );
+      case '13d':
+      case '13n':
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faSnowflake}
+            color={'white'}
+          />
+        );
+      case '50d':
+        return (
+          <FontAwesomeIcon
+            style={{marginTop: 5}}
+            icon={faTornado}
+            color={'white'}
+          />
+        );
     }
   };
 
@@ -76,22 +101,24 @@ const Hourly = ({data, converter}) => {
     const {dt, temp, weather} = data;
     return (
       <View
-        style={{justifyContent: 'center', alignItems: 'center', padding: 5}}>
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: 5,
+        }}>
         <View>
           <Text style={{color: 'white', fontSize: 12}}> {ESTime(dt)} </Text>
         </View>
 
         <View
           style={{
-            // paddingTop: 8,
-            // paddingBottom: 8,
             marginTop: 10,
             marginBottom: 10,
           }}>
           <View>{renderIcon(weather[0].icon)}</View>
         </View>
 
-        <Text style={{color: 'white'}}> {converter(temp)} &deg;</Text>
+        <Text style={{color: 'white'}}> {converter(temp)}&deg;</Text>
       </View>
     );
   };
@@ -133,5 +160,6 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     backgroundColor: '#156598',
     borderRadius: 10,
+    paddingHorizontal: 10,
   },
 });

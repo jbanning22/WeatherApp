@@ -45,7 +45,9 @@ const App = () => {
       position => {
         const {latitude, longitude} = position.coords;
         setLocation({latitude, longitude});
+        console.log(latitude, longitude);
         const URL = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&appid=fe00c682c3e53ad073fa636d3b457d9a`;
+        console.log(URL);
         getData(URL);
       },
       error => {
@@ -58,7 +60,6 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'light-content'} />
-      {/* <ScrollView> */}
       <View>
         {APIData !== null ? (
           <Temp
@@ -68,22 +69,18 @@ const App = () => {
             cap={capitilize}
           />
         ) : (
-          <ActivityIndicator size="large" />
+          <ActivityIndicator
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+            size="large"
+          />
         )}
       </View>
       <View>
-        {APIData !== null ? (
-          <Hourly converter={getF} data={APIData} />
-        ) : // <ActivityIndicator size="large" />
-        null}
+        {APIData !== null ? <Hourly converter={getF} data={APIData} /> : null}
       </View>
       <View>
-        {APIData !== null ? (
-          <Daily converter={getF} data={APIData} />
-        ) : // <ActivityIndicator size="large" />
-        null}
+        {APIData !== null ? <Daily converter={getF} data={APIData} /> : null}
       </View>
-      {/* </ScrollView> */}
     </SafeAreaView>
   );
 };
