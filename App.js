@@ -6,16 +6,16 @@ import {
   ActivityIndicator,
   ScrollView,
   StatusBar,
+  Platform,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Temp from './components/Temp';
 import Hourly from './components/Hourly';
 import Daily from './components/Daily';
-
-const URL =
-  'https://api.openweathermap.org/data/3.0/onecall?lat=39.6837&lon=-75.7497&appid=fe00c682c3e53ad073fa636d3b457d9a';
+import Geolocation from 'react-native-geolocation-service';
 
 const App = () => {
+  const [location, setLocation] = useState({});
   const [APIData, setAPIData] = useState(null);
 
   function getF(kelvinTemp) {
@@ -30,40 +30,60 @@ const App = () => {
   }
 
   useEffect(() => {
-    const getData = async () => {
-      const res = await fetch(URL);
+    if (Platform.OS === 'ios') {
+      Geolocation.requestAuthorization('always');
+    }
+  }, []);
+
+  useEffect(() => {
+    const getData = async url => {
+      const res = await fetch(url);
       const data = await res.json();
       setAPIData(data);
     };
-    getData();
+    Geolocation.getCurrentPosition(
+      position => {
+        const {latitude, longitude} = position.coords;
+        setLocation({latitude, longitude});
+        const URL = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&appid=fe00c682c3e53ad073fa636d3b457d9a`;
+        getData(URL);
+      },
+      error => {
+        console.log(error.code, error.message);
+      },
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+    );
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'light-content'} />
-      <ScrollView>
-        <View>
-          {APIData !== null ? (
-            <Temp converter={getF} data={APIData} cap={capitilize} />
-          ) : (
-            <ActivityIndicator size="large" />
-          )}
-        </View>
-        <View>
-          {APIData !== null ? (
-            <Hourly converter={getF} data={APIData} />
-          ) : (
-            <ActivityIndicator size="large" />
-          )}
-        </View>
-        <View>
-          {APIData !== null ? (
-            <Daily converter={getF} data={APIData} />
-          ) : (
-            <ActivityIndicator size="large" />
-          )}
-        </View>
-      </ScrollView>
+      {/* <ScrollView> */}
+      <View>
+        {APIData !== null ? (
+          <Temp
+            converter={getF}
+            location={location}
+            data={APIData}
+            cap={capitilize}
+          />
+        ) : (
+          <ActivityIndicator size="large" />
+        )}
+      </View>
+      <View>
+        {APIData !== null ? (
+          <Hourly converter={getF} data={APIData} />
+        ) : // <ActivityIndicator size="large" />
+        null}
+      </View>
+      <View>
+        {APIData !== null ? (
+          <Daily converter={getF} data={APIData} />
+        ) : // <ActivityIndicator size="large" />
+        null}
+      </View>
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 };

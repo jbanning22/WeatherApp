@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 
-const Temp = ({data, converter, cap}) => {
+const Temp = ({data, location, converter, cap}) => {
   const {current, minutely, hourly, daily} = data;
 
   return (
@@ -9,12 +9,22 @@ const Temp = ({data, converter, cap}) => {
       style={{
         marginTop: 40,
         marginBottom: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
       }}>
       <View style={{alignItems: 'center'}}>
         <Text style={{fontWeight: '500', fontSize: 30, color: 'white'}}>
           Newark
         </Text>
-        <Text style={{fontSize: 80, fontWeight: '200', color: 'white'}}>
+        {/* <Text>{location.latitude}</Text>
+        <Text>{location.longitude}</Text> */}
+        <Text
+          style={{
+            fontSize: 80,
+            fontWeight: '200',
+            color: 'white',
+            alignSelf: 'center',
+          }}>
           {converter(current.temp)}&deg;
         </Text>
         <Text style={{fontSize: 16, color: 'white'}}>

@@ -13,6 +13,7 @@ const Daily = ({data, converter}) => {
       new Date(unixTime * 1000).getDay()
     ];
   }
+
   const renderIcon = descr => {
     switch (descr) {
       case '01d':
@@ -100,7 +101,7 @@ export default Daily;
 const styles = StyleSheet.create({
   VFL: {
     width: 350,
-    height: 500,
+    height: 360,
     backgroundColor: '#156598',
     paddingTop: 24,
     borderWidth: 0.25,
