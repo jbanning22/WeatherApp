@@ -33,7 +33,7 @@
 		00E356F21AD99517003FC87E /* APIPracticeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIPracticeTests.m; sourceTree = "<group>"; };
 		044CC087291FF6160088B513 /* APIPractice-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "APIPractice-Bridging-Header.h"; sourceTree = "<group>"; };
 		044CC088291FF6160088B513 /* Geolocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geolocation.swift; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* APIPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APIPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = APIPractice/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = APIPractice/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = APIPractice/Images.xcassets; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* APIPractice.app */,
+				13B07F961A680F5B00A75B9A /* WeatherApp.app */,
 				00E356EE1AD99517003FC87E /* APIPracticeTests.xctest */,
 			);
 			name = Products;
@@ -196,7 +196,7 @@
 			);
 			name = APIPractice;
 			productName = APIPractice;
-			productReference = 13B07F961A680F5B00A75B9A /* APIPractice.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* WeatherApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -497,17 +497,21 @@
 				DEVELOPMENT_TEAM = 37JK53A68L;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = APIPractice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WeatherApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = APIPractice;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.jbanning.WeatherApp;
+				PRODUCT_NAME = WeatherApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "APIPractice-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -524,17 +528,21 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 37JK53A68L;
 				INFOPLIST_FILE = APIPractice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WeatherApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = APIPractice;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.jbanning.WeatherApp;
+				PRODUCT_NAME = WeatherApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "APIPractice-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
